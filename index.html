@@ -132,14 +132,16 @@
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: var(--neon-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
             position: relative;
-            animation: pulse-glow 2s ease-in-out infinite alternate;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            color: var(--aws-orange);
         }
 
         .logo::after {
@@ -249,29 +251,21 @@
 
         .hero h1 {
             font-size: 4.5rem;
-            font-weight: 300;
+            font-weight: 500;
             margin-bottom: 1rem;
-            background: linear-gradient(45deg, #FF9900, #146EB4, #00D4FF);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: heroGlow 3s ease-in-out infinite alternate;
+            color: var(--text-primary);
             position: relative;
             z-index: 2;
-            letter-spacing: 0.05em;
-            text-shadow: none;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+
+        .hero h1:hover {
+            color: var(--aws-orange);
         }
 
         .hero h1::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            color: transparent;
-            background: linear-gradient(45deg, rgba(255,153,0,0.3), rgba(20,110,180,0.3));
-            -webkit-background-clip: text;
-            animation: subtleGlow 4s infinite;
-            z-index: -1;
+            display: none;
         }
 
         .hero .subtitle {
@@ -304,7 +298,8 @@
             justify-content: center;
             gap: 1rem;
             margin: 2rem 0;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
         }
 
         .badge {
@@ -838,6 +833,129 @@
             transform: translateX(5px);
         }
 
+        /* Experience Timeline Styles */
+        .experience-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--aws-orange), var(--aws-blue));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--glass-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-left: 2rem;
+            border: 1px solid rgba(255, 153, 0, 0.2);
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 153, 0, 0.2);
+            border-color: var(--aws-orange);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -3rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--aws-orange);
+            border-radius: 50%;
+            border: 4px solid var(--dark-bg);
+            box-shadow: 0 0 20px rgba(255, 153, 0, 0.5);
+            z-index: 2;
+        }
+
+        .timeline-dot::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 153, 0, 0.3);
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        .experience-title {
+            color: var(--aws-orange);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: var(--aws-blue);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .experience-period {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+            display: inline-block;
+            background: rgba(146, 180, 220, 0.1);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .experience-achievements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .achievement-tag {
+            background: rgba(255, 153, 0, 0.1);
+            color: var(--aws-orange);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .achievement-tag:hover {
+            background: rgba(255, 153, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @keyframes pulse-dot {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-menu {
@@ -903,6 +1021,52 @@
                 height: 100px;
                 font-size: 1rem;
             }
+
+            .experience-timeline {
+                padding-left: 1rem;
+            }
+
+            .experience-timeline::before {
+                left: 0.5rem;
+            }
+
+            .timeline-item {
+                margin-left: 1.5rem;
+                padding: 1.5rem;
+            }
+
+            .timeline-dot {
+                left: -2.5rem;
+                width: 16px;
+                height: 16px;
+                top: 1.5rem;
+            }
+
+            .timeline-dot::before {
+                width: 24px;
+                height: 24px;
+            }
+
+            .experience-title {
+                font-size: 1.3rem;
+            }
+
+            .experience-company {
+                font-size: 1.1rem;
+            }
+
+            .experience-description {
+                font-size: 1rem;
+            }
+
+            .experience-achievements {
+                gap: 0.3rem;
+            }
+
+            .achievement-tag {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
         }
 
         /* Scroll animations */
@@ -951,12 +1115,13 @@
     <section id="home" class="hero">
         <div class="hero-3d-container" id="hero-3d"></div>
         <div class="hero-content">
-            <h1 data-text="Alex Chen">Alex Chen</h1>
-            <p class="subtitle" id="typewriter">Engineering Leader | AI Architecture | Cloud Solutions</p>
+            <h1 data-text="Satyendra Shukla">Satyendra Shukla</h1>
+            <p class="subtitle" id="typewriter">Engineering Leader | AI Architecture | Backend Architecture | Cloud Solutions</p>
             <div class="hero-badges">
+                <span class="badge">Engineering Leader</span>
+                <span class="badge">Agentic AI Solution Expert</span>
+                <span class="badge">Backend Solution Architect</span>
                 <span class="badge">AWS Certified Solutions Architect</span>
-                <span class="badge">20+ Team Leader</span>
-                <span class="badge">AI/ML Expert</span>
             </div>
             <a href="#achievements" class="cta-button">Explore Leadership Impact</a>
         </div>
@@ -971,17 +1136,17 @@
                     <i class="fas fa-users-cog"></i>
                 </div>
                 <div class="about-text">
-                    <p>Seasoned Engineering Leader with proven expertise in scaling high-performance teams and delivering enterprise-grade AI solutions. Successfully led 20+ member cross-functional teams in architecting and deploying conversational AI platforms serving millions of users.</p>
+                    <p>Seasoned Engineering Leader with proven expertise in scaling high-performance teams and delivering enterprise-grade AI solutions. Successfully led 25+ member cross-functional teams in architecting and deploying conversational AI platforms serving millions of users.</p>
                     <br>
-                    <p>As an AWS Certified Solutions Architect, I specialize in cloud-native architectures, microservices design, and AI/ML pipeline optimization. My passion lies in nurturing technical talent, establishing engineering excellence, and driving innovation through strategic technology adoption.</p>
+                    <p>As an AWS Certified Solutions Architect, I specialize in cloud-native architectures, microservices design. My passion lies in nurturing technical talent, establishing engineering excellence, and driving innovation through strategic technology adoption.</p>
                     <br>
                     <div class="leadership-stats">
                         <div class="stat-item">
-                            <span class="stat-number">20+</span>
+                            <span class="stat-number">25+</span>
                             <span class="stat-label">Team Members Led</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number">5+</span>
+                            <span class="stat-number">8+</span>
                             <span class="stat-label">Years Leadership</span>
                         </div>
                         <div class="stat-item">
@@ -1032,7 +1197,7 @@
                 <div class="skill-card">
                     <i class="fas fa-users-cog"></i>
                     <h3>Team Leadership</h3>
-                    <p>20+ member cross-functional teams, Agile methodologies, Performance management</p>
+                    <p>25+ member cross-functional teams, Agile methodologies, Performance management</p>
                 </div>
                 <div class="skill-card">
                     <i class="fab fa-aws"></i>
@@ -1064,7 +1229,7 @@
     </section>
 
     <!-- Leadership Achievements Section -->
-    <section id="projects" class="section">
+    <section id="achievements" class="section">
         <div class="container">
             <h2 class="section-title fade-in">Leadership Achievements</h2>
             <div class="projects-grid fade-in">
@@ -1074,10 +1239,10 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AI Voice & Chat Bot Platform</h3>
-                        <p class="project-description">Led 25-member cross-functional team to deliver enterprise-grade conversational AI platform. Achieved 40% improvement in customer satisfaction and 60% reduction in support costs. Scaled to handle 1M+ daily interactions.</p>
+                        <p class="project-description">Led 25+ member cross-functional teams to deliver enterprise-grade conversational AI platform. Achieved 60% improvement in customer satisfaction and 80% reduction in support costs. Scaled to handle 1M+ daily interactions.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">Team Leadership</span>
-                            <span class="tech-tag">AI/ML</span>
+                            <span class="tech-tag">Engineering Leadership</span>
+                            <span class="tech-tag">Agentic AI Solutions</span>
                             <span class="tech-tag">AWS Architecture</span>
                             <span class="tech-tag">Java Backend</span>
                         </div>
@@ -1094,7 +1259,7 @@
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">AWS Cloud Migration Strategy</h3>
-                        <p class="project-description">Architected and led enterprise-wide cloud migration for 15+ microservices. Reduced infrastructure costs by 35% while improving system reliability to 99.9% uptime. Mentored team through AWS certification journey.</p>
+                        <p class="project-description">Architected and led enterprise-wide cloud migration for 15+ microservices. Reduced infrastructure costs by 60% while improving system reliability to 99.9% uptime. Mentored team through AWS certification journey.</p>
                         <div class="project-tech">
                             <span class="tech-tag">AWS Solutions</span>
                             <span class="tech-tag">Microservices</span>
@@ -1151,6 +1316,87 @@
         </div>
     </section>
 
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h2 class="section-title fade-in">Professional Experience</h2>
+            <div class="experience-timeline fade-in">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="experience-title">Senior Engineering Manager</h3>
+                        <h4 class="experience-company">Optum Global Solutions (UHG) - Noida</h4>
+                        <span class="experience-period">March 2025 - Present</span>
+                        <p class="experience-description">Leading 25+ member engineering teams in developing enterprise-grade conversational AI and voice bot solutions. Architected cloud-native platforms serving millions of users with 99.9% uptime. Established engineering excellence practices and mentorship programs.</p>
+                        <div class="experience-achievements">
+                            <span class="achievement-tag">Team Scale: 5→25 engineers</span>
+                            <span class="achievement-tag">Platform: 1M+ daily interactions</span>
+                            <span class="achievement-tag">Cost Reduction: 60%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="experience-title">Engineering Manager</h3>
+                        <h4 class="experience-company">Optum Global Solutions (UHG) - Noida</h4>
+                        <span class="experience-period">Nov 2022 - Feb 2025</span>
+                        <p class="experience-description">Led 10+ member engineering teams in developing enterprise-grade software. Architected cloud-native platforms for legacy system migration. Established engineering excellence practices and mentorship programs.</p>
+                        <div class="experience-achievements">
+                            <span class="achievement-tag">Team Scale: 3→12 engineers</span>
+                            <span class="achievement-tag">Java Batch Solution - 1M+ daily record processing</span>
+                            <span class="achievement-tag">Cost Reduction: $2M per year</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="experience-title">Technical Lead & Solutions Architect</h3>
+                        <h4 class="experience-company">Siemens Technology and Services Pvt. Ltd. - Noida</h4>
+                        <span class="experience-period">Jan 2018 - Nov 2022</span>
+                        <p class="experience-description">Led technical architecture and implementation of cloud migration initiatives. Designed microservices architectures and established DevOps best practices. Mentored junior engineers and conducted technical interviews.</p>
+                        <div class="experience-achievements">
+                            <span class="achievement-tag">AWS Migration: 15+ services</span>
+                            <span class="achievement-tag">Infrastructure Cost: -35%</span>
+                            <span class="achievement-tag">Team Mentoring: 15+ engineers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="experience-title">Senior Software Engineer</h3>
+                        <h4 class="experience-company">Siemens Technology and Services Pvt. Ltd. - Noida</h4>
+                        <span class="experience-period">Feb 2016 - Jan 2018</span>
+                        <p class="experience-description">Developed and maintained enterprise Java applications using Spring Boot and microservices architecture. Collaborated with cross-functional teams to deliver high-quality software solutions.</p>
+                        <div class="experience-achievements">
+                            <span class="achievement-tag">Java/Spring Boot Expert</span>
+                            <span class="achievement-tag">AWS Microservices Application Development</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3 class="experience-title">Software Engineer</h3>
+                        <h4 class="experience-company">Samsung R&D Institute - Noida</h4>
+                        <span class="experience-period">Oct 2012 - Jan 2016</span>
+                        <p class="experience-description">Developed and maintained enterprise Java applications using Spring Boot and microservices architecture. Collaborated with cross-functional teams to deliver high-quality software solutions. Introduced automated testing and CI/CD practices.</p>
+                        <div class="experience-achievements">
+                            <span class="achievement-tag">Java/Spring Boot</span>
+                            <span class="achievement-tag">CI/CD Implementation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="section">
         <div class="container">
@@ -1158,21 +1404,17 @@
             <div class="contact-content fade-in">
                 <p>Open to discussing leadership opportunities, technical consulting, and strategic partnerships. Let's explore how we can drive innovation and build exceptional teams together.</p>
                 <div class="contact-links">
-                    <a href="mailto:engineering.leader@example.com" class="contact-link">
+                    <a href="mailto:satyendranathshukla@gmail.com" class="contact-link">
                         <i class="fas fa-envelope"></i>
                         Professional Email
                     </a>
-                    <a href="https://linkedin.com/in/engineeringleader" class="contact-link">
+                    <a href="https://www.linkedin.com/in/satyendranathshukla" class="contact-link">
                         <i class="fab fa-linkedin"></i>
                         LinkedIn
                     </a>
                     <a href="https://github.com/engineeringleader" class="contact-link">
                         <i class="fab fa-github"></i>
                         GitHub
-                    </a>
-                    <a href="https://calendly.com/engineering-leader" target="_blank" class="contact-link">
-                        <i class="fas fa-calendar"></i>
-                        Schedule Meeting
                     </a>
                 </div>
             </div>
